@@ -21,8 +21,8 @@ const films = [
 
 const serieTV = [
   {
-    title: "Serie Google Drive 1",
-    src: "https://drive.google.com/uc?export=download&id=ID_FILE_3",
+    title: "Ginny e Georgia",
+    src: "https://drive.google.com/file/d/1axCVYDN7sJjm90pXt1hk3uJOZCIAtvtc/preview",
     type: "video/mp4"
   },
   {
