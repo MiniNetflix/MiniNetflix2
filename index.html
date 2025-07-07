@@ -115,6 +115,27 @@
     background: #b00710;
   }
 
+  /* Ricerca */
+  #search-container {
+    margin-bottom: 20px;
+  }
+
+  #search-input {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1em;
+  }
+
+  #search-input::placeholder {
+    color: #aaa;
+  }
+
+  #search-input:focus {
+    outline: 2px solid #e50914;
+  }
+
   /* Video items */
   .video-item {
     margin-bottom: 40px;
@@ -223,10 +244,8 @@
     }
   }
 </style>
-
 </head>
 <body>
-
   <!-- Login -->
   <div id="login-screen">
     <h2>Accedi</h2>
@@ -251,25 +270,40 @@
         <button onclick="logout()">Esci</button>
       </header>
 
+      <div id="search-container">
+        <input type="text" id="search-input" placeholder="Cerca film o serie TV..." oninput="handleSearch()" />
+      </div>
+
       <section id="film-section" class="section-content">
-        <!-- Film verranno inseriti qui dinamicamente -->
+        <!-- Film dinamici -->
       </section>
 
       <section id="serie-section" class="section-content" style="display:none;">
-        <!-- Serie TV inserite dinamicamente -->
+        <!-- Serie TV dinamiche -->
       </section>
 
       <section id="cronologia-section" class="section-content" style="display:none;">
-        <div id="history-list">
-          <!-- Cronologia -->
-        </div>
+        <div id="history-list"></div>
       </section>
     </main>
   </div>
 
-<!-- Video.js -->
-<script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
-<script src="script.js"></script>
+  <!-- Video.js -->
+  <script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
 
+  <script>
+    function handleSearch() {
+      const query = document.getElementById("search-input").value.toLowerCase();
+      const allSections = ["film-section", "serie-section"];
+
+      allSections.forEach(sectionId => {
+        const videos = document.querySelectorAll(`#${sectionId} .video-item`);
+        videos.forEach(video => {
+          const title = video.dataset.title.toLowerCase();
+          video.style.display = title.includes(query) ? "block" : "none";
+        });
+      });
+    }
+  </script>
 </body>
 </html>
