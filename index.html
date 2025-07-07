@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MiniNetflix Responsive</title>
+
+<!-- Video.js CSS -->
+<link href="https://vjs.zencdn.net/8.5.2/video-js.css" rel="stylesheet" />
+<link href="style.css" rel="stylesheet" />
+
+</head>
+<body>
+
+  <!-- Login -->
+  <div id="login-screen">
+    <h2>Accedi</h2>
+    <input type="text" id="username" placeholder="Nome utente" autocomplete="username" />
+    <input type="password" id="password" placeholder="Password" autocomplete="current-password" />
+    <button onclick="login()">Login</button>
+    <p id="login-error" style="color:#f44336"></p>
+  </div>
+
+  <!-- App principale -->
+  <div id="app" style="display:none; width:100%; height:100%; display:flex;">
+    <nav id="sidebar">
+      <h2>MiniNetflix</h2>
+      <div class="menu-item active" data-section="film"><span class="menu-icon">🎬</span> Film</div>
+      <div class="menu-item" data-section="serie"><span class="menu-icon">📺</span> Serie TV</div>
+      <div class="menu-item" data-section="cronologia"><span class="menu-icon">⏰</span> Cronologia</div>
+    </nav>
+
+    <main id="content">
+      <header>
+        <h1>MiniNetflix</h1>
+        <button onclick="logout()">Esci</button>
+      </header>
+
+      <section id="film-section" class="section-content">
+        <!-- Film verranno inseriti qui dinamicamente -->
+      </section>
+
+      <section id="serie-section" class="section-content" style="display:none;">
+        <!-- Serie TV inserite dinamicamente -->
+      </section>
+
+      <section id="cronologia-section" class="section-content" style="display:none;">
+        <div id="history-list">
+          <!-- Cronologia -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+<!-- Video.js -->
+<script src="https://vjs.zencdn.net/8.5.2/video.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
