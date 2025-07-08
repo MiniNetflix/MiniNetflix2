@@ -6,7 +6,7 @@ let currentUser = null;
 
 const seriesData = {
   "Ginny e Georgia": {
-    img: "https://pianetapop.it/sites/default/files/styles/locandina_large/public/2025-06/ginny_georgia_stagione_3_poster_netflix.jpg",
+    img: "https://m.media-amazon.com/images/M/MV5BN2M2YzVmZDAtZDk1YS00YTczLTk2YmEtMTk1ZTQyZjlkMmUwXkEyXkFqcGdeQXVyMTMzNzIyNDc1._V1_.jpg",
     seasons: {
       1: [
         { episode: 1, title: "Episodio 1", src: "https://drive.google.com/file/d/12Ew2SflLxJP6C6UuznxfX4ou-1e_1Xcq/preview" }
