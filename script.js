@@ -9,7 +9,7 @@ let currentUser = null;
 // Dati demo con immagini
 const seriesData = {
   "Ginny e Georgia": {
-    image: "https://via.placeholder.com/300x180?text=Ginny+e+Georgia",
+    image: "https://images.justwatch.com/poster/302127716/s718/stagione-2.jpg",
     seasons: {
       1: [
         { episode: 1, title: "Episodio 1", src: "https://drive.google.com/file/d/12Ew2SflLxJP6C6UuznxfX4ou-1e_1Xcq/preview" },
