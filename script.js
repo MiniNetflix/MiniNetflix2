@@ -112,6 +112,7 @@ function showEpisodes(seriesName, seasonNum) {
   const episodeList = document.getElementById("episode-list");
   const episodeTitle = document.getElementById("episode-title");
   const episodesContainer = document.getElementById("episodes-container");
+  const navButton = episodeList.querySelector(".nav-button");
 
   episodeTitle.textContent = seriesName + " - Stagione " + seasonNum;
   episodesContainer.innerHTML = "";
@@ -135,6 +136,10 @@ function showEpisodes(seriesName, seasonNum) {
     });
   }
 
+  // Imposta pulsante "torna alle stagioni"
+  navButton.textContent = "← Torna alle stagioni";
+  navButton.onclick = backToSeasons;
+
   episodeList.style.display = "block";
 }
 
@@ -144,6 +149,7 @@ function showMovie(movieName) {
   const episodeList = document.getElementById("episode-list");
   const episodeTitle = document.getElementById("episode-title");
   const episodesContainer = document.getElementById("episodes-container");
+  const navButton = episodeList.querySelector(".nav-button");
 
   episodeTitle.textContent = movieName;
   episodesContainer.innerHTML = "";
@@ -158,6 +164,10 @@ function showMovie(movieName) {
     iframe.frameBorder = "0";
     episodesContainer.appendChild(iframe);
   }
+
+  // Imposta pulsante "torna alla home"
+  navButton.textContent = "← Torna alla home";
+  navButton.onclick = backToHome;
 
   episodeList.style.display = "block";
 }
