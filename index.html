@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <div id="login-screen">
     <h2>Accedi</h2>
     <input type="text" id="username" placeholder="Nome utente" />
@@ -32,19 +33,15 @@
 
     <div id="home-view" class="view">
       <section id="series-section">
-        <div class="section-header">
-          <h2>Serie TV</h2>
-          <button class="see-all-btn" onclick="seeAll('series')">Vedi tutte</button>
-        </div>
-        <div id="series-list" class="card-container"></div>
+        <h2>Serie TV</h2>
+        <div class="scroll-container" id="series-list-div"></div>
+        <button class="see-all-btn" onclick="showAll('series')">Vedi tutte le Serie TV</button>
       </section>
 
       <section id="movies-section">
-        <div class="section-header">
-          <h2>Film</h2>
-          <button class="see-all-btn" onclick="seeAll('movies')">Vedi tutti</button>
-        </div>
-        <div id="movies-list" class="card-container"></div>
+        <h2>Film</h2>
+        <div class="scroll-container" id="movies-list-div"></div>
+        <button class="see-all-btn" onclick="showAll('movies')">Vedi tutti i Film</button>
       </section>
     </div>
 
@@ -55,7 +52,7 @@
     </div>
 
     <div id="episode-list" class="view" style="display:none;">
-      <button class="nav-button" onclick="backToPrevious()">← Torna indietro</button>
+      <button class="nav-button" onclick="backToHome()">← Torna alla home</button>
       <h2 id="episode-title"></h2>
       <div id="episodes-container"></div>
     </div>
