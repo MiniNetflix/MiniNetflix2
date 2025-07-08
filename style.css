@@ -14,6 +14,28 @@ header {
   color: red;
   font-size: 1.8rem;
   text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+#search-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+#search-bar {
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  width: 250px;
+  max-width: 80vw;
+  background-color: #333;
+  color: white;
+}
+#search-bar::placeholder {
+  color: #bbb;
 }
 button {
   background-color: #e50914;
@@ -24,14 +46,19 @@ button {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin: 5px 0;
 }
 button:hover {
   background-color: #b20710;
 }
+.logout-btn {
+  background-color: #555;
+}
+.logout-btn:hover {
+  background-color: #333;
+}
 #login-screen, .view {
-  max-width: 400px;
-  margin: 100px auto;
+  max-width: 700px;
+  margin: 50px auto;
   background-color: #1c1c1c;
   padding: 30px;
   border-radius: 10px;
@@ -58,9 +85,17 @@ ul {
   list-style: none;
   padding-left: 0;
   text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
 }
 ul li {
   margin-bottom: 10px;
+}
+ul li button {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  padding: 8px 12px;
 }
 #episodes-container iframe {
   width: 100%;
@@ -77,4 +112,7 @@ ul li {
   cursor: pointer;
   margin-bottom: 15px;
   text-align: left;
+}
+section {
+  margin-bottom: 40px;
 }
