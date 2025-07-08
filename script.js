@@ -27,7 +27,7 @@ const seriesData = {
 const moviesData = {
   "Il Padrino": {
     img: "https://via.placeholder.com/150x220?text=Il+Padrino",
-    src: "https://www.youtube.com/embed/sY1S34973zA"
+    src: "https://supervideo.cc/oz82xaij80cd"
   },
   "Inception": {
     img: "https://via.placeholder.com/150x220?text=Inception",
