@@ -1,125 +1,141 @@
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
   background-color: #141414;
-  color: #fff;
-}
-
-#login-screen {
-  max-width: 300px;
-  margin: 100px auto;
-  background-color: #222;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-}
-
-#login-screen input {
-  display: block;
-  width: 90%;
-  margin: 10px auto;
-  padding: 8px;
-  border: none;
-  border-radius: 4px;
-}
-
-#login-screen button {
-  background-color: #e50914;
-  border: none;
-  padding: 10px 20px;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
-  margin-top: 10px;
 }
-
-#login-error {
-  color: #f44336;
-  margin-top: 10px;
+body, html {
+  height: 100%;
 }
-
-#main-app header {
-  background-color: #222;
-  padding: 15px 20px;
-  font-size: 24px;
-  font-weight: bold;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+header {
+  background-color: #111;
+  padding: 10px 20px;
+  color: red;
+  font-size: 1.8rem;
+  text-align: center;
   position: sticky;
   top: 0;
   z-index: 10;
 }
-
 #search-container {
+  margin-top: 10px;
   display: flex;
-  align-items: center;
+  justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
-
 #search-bar {
-  padding: 6px 10px;
+  padding: 8px 12px;
   border-radius: 4px;
   border: none;
-  width: 200px;
-}
-
-#search-container button {
-  background-color: #e50914;
-  border: none;
-  padding: 7px 14px;
+  width: 250px;
+  max-width: 80vw;
+  background-color: #333;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-  border-radius: 4px;
 }
-
+#search-bar::placeholder {
+  color: #bbb;
+}
+button {
+  background-color: #e50914;
+  color: white;
+  padding: 10px 15px;
+  font-size: 14px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #b20710;
+}
 .logout-btn {
   background-color: #555;
 }
-
-.view {
-  padding: 20px;
+.logout-btn:hover {
+  background-color: #333;
 }
-
+#login-screen, .view {
+  max-width: 700px;
+  margin: 50px auto;
+  background-color: #1c1c1c;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  text-align: center;
+}
+#login-screen input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+}
+#login-screen input::placeholder {
+  color: #bbb;
+}
+#login-error {
+  color: red;
+  margin-top: 10px;
+}
 ul {
   list-style: none;
-  padding: 0;
+  padding-left: 0;
+  margin: 0;
 }
-
-li {
-  margin-bottom: 10px;
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding: 10px 0;
 }
-
-button {
-  background-color: #e50914;
-  border: none;
-  padding: 8px 14px;
-  color: white;
-  font-weight: bold;
+.card {
+  flex: 0 0 calc(100% / 6 - 15px);
+  background-color: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
   cursor: pointer;
-  border-radius: 4px;
+  transition: transform 0.2s;
 }
-
+.card:hover {
+  transform: scale(1.05);
+}
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.card-title {
+  padding: 10px;
+  font-size: 0.9rem;
+}
+.see-all-btn {
+  display: block;
+  margin: 20px auto;
+  background-color: #444;
+  padding: 10px 20px;
+}
 .nav-button {
-  background-color: #333;
+  background: none;
+  border: none;
+  color: #e50914;
+  font-size: 1.2rem;
+  cursor: pointer;
   margin-bottom: 15px;
-  font-weight: normal;
+  text-align: left;
 }
-
 #episodes-container iframe {
   width: 100%;
-  height: 360px;
-  margin-top: 10px;
-  border-radius: 8px;
+  aspect-ratio: 16 / 9;
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 20px;
 }
-
-#episodes-container div {
-  margin-bottom: 25px;
-}
-
-h2 {
-  margin-top: 0;
+section {
+  margin-bottom: 40px;
 }
