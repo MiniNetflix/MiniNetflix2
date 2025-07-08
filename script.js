@@ -15,6 +15,7 @@ const seriesData = {
         { episode: 4, title: "Lydia Bennet è senza dubbio femminista", src: "https://drive.google.com/file/d/1uM6S1cUnBRT_wRLsxvX0VO5oZ6MAIbVU/preview" },
         { episode: 5, title: "Boo, brutta stron*a", src: "https://drive.google.com/file/d/1MFYR1es-2PzE40642-nuaMJQ7GE0QHOZ/preview" },
         { episode: 6, title: "Non mi capite", src: "https://drive.google.com/file/d/1Rfr4vh6xVEoG5f-WMeeQyoChIGInwQAt/preview" }
+        { episode: 7, title: "Buon compleanno sciocca", src: "https://drive.google.com/file/d/1Kq7Fs06knX-6VOXQTs0hqphJ3Q3srCun/preview" }
       ]
     }
   },
@@ -39,7 +40,7 @@ const moviesData = {
   },
   "Harry Potter e la pietra filosofale": {
     img: "https://i.imgur.com/JzHMob8.jpeg",
-    src: "https://drive.google.com/file/d/1Rfr4vh6xVEoG5f-WMeeQyoChIGInwQAt/preview"
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
   }
 };
 
