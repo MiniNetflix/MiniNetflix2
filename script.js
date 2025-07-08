@@ -6,7 +6,7 @@ const users = {
 };
 let currentUser = null;
 
-// Dati demo serie, stagioni, episodi e link
+// Dati demo film e serie, stagioni, episodi e link
 const seriesData = {
   "Ginny e Georgia": {
     seasons: {
@@ -15,11 +15,17 @@ const seriesData = {
         { episode: 2, title: "Episodio 2", src: "https://drive.google.com/file/d/13wB1kyWtuHqINWpBYsfRSgbOIQ8404UE/preview" },
         { episode: 3, title: "Episodio 3", src: "https://drive.google.com/file/d/1axCVYDN7sJjm90pXt1hk3uJOZCIAtvtc/preview" },
         { episode: 10, title: "Episodio 10", src: "https://drive.google.com/file/d/1axCVYDN7sJjm90pXt1hk3uJOZCIAtvtc/preview" }
-      ],
-      2: [
-        // aggiungi episodi seconda stagione se vuoi
       ]
     }
+  }
+};
+
+const moviesData = {
+  "Il Padrino": {
+    src: "https://drive.google.com/file/d/XYZ12345/preview"
+  },
+  "Inception": {
+    src: "https://drive.google.com/file/d/ABC67890/preview"
   }
 };
 
@@ -32,7 +38,7 @@ function login() {
     currentUser = user;
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("main-app").style.display = "block";
-    showSeriesList();
+    loadHome();
   } else {
     document.getElementById("login-error").innerText = "Credenziali errate";
   }
@@ -43,10 +49,34 @@ function logout() {
   location.reload();
 }
 
-// Mostra lista serie
-function showSeriesList() {
+// Carica home con film e serie
+function loadHome() {
   hideAllViews();
-  document.getElementById("series-list").style.display = "block";
+  document.getElementById("home-view").style.display = "block";
+
+  // Serie
+  const seriesUl = document.getElementById("series-list-ul");
+  seriesUl.innerHTML = "";
+  for (const serie in seriesData) {
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.textContent = serie;
+    btn.onclick = () => showSeasons(serie);
+    li.appendChild(btn);
+    seriesUl.appendChild(li);
+  }
+
+  // Film
+  const moviesUl = document.getElementById("movies-list-ul");
+  moviesUl.innerHTML = "";
+  for (const movie in moviesData) {
+    const li = document.createElement("li");
+    const btn = document.createElement("button");
+    btn.textContent = movie;
+    btn.onclick = () => showMovie(movie);
+    li.appendChild(btn);
+    moviesUl.appendChild(li);
+  }
 }
 
 // Mostra stagioni di una serie
@@ -108,16 +138,87 @@ function showEpisodes(seriesName, seasonNum) {
   episodeList.style.display = "block";
 }
 
+// Mostra film
+function showMovie(movieName) {
+  hideAllViews();
+  const episodeList = document.getElementById("episode-list");
+  const episodeTitle = document.getElementById("episode-title");
+  const episodesContainer = document.getElementById("episodes-container");
+
+  episodeTitle.textContent = movieName;
+  episodesContainer.innerHTML = "";
+
+  const movie = moviesData[movieName];
+  if (!movie) {
+    episodesContainer.innerHTML = "<p>Film non disponibile</p>";
+  } else {
+    const iframe = document.createElement("iframe");
+    iframe.src = movie.src;
+    iframe.allowFullscreen = true;
+    iframe.frameBorder = "0";
+    episodesContainer.appendChild(iframe);
+  }
+
+  episodeList.style.display = "block";
+}
+
 // Nascondi tutte le view
 function hideAllViews() {
   document.querySelectorAll(".view").forEach(v => v.style.display = "none");
 }
 
-// Torna indietro
-function backToSeries() {
-  showSeriesList();
+// Torna alla home
+function backToHome() {
+  loadHome();
 }
+
+// Torna alla lista stagioni
 function backToSeasons() {
   document.getElementById("episode-list").style.display = "none";
   document.getElementById("season-list").style.display = "block";
+}
+
+// Funzione ricerca su film e serie
+function filterContent() {
+  const query = document.getElementById("search-bar").value.trim().toLowerCase();
+  if (!query) {
+    backToHome();
+    return;
+  }
+
+  hideAllViews();
+  const resultsView = document.getElementById("search-results");
+  const resultsUl = document.getElementById("search-results-ul");
+  resultsUl.innerHTML = "";
+
+  // Cerca serie (nome serie)
+  for (const serie in seriesData) {
+    if (serie.toLowerCase().includes(query)) {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.textContent = `Serie TV: ${serie}`;
+      btn.onclick = () => showSeasons(serie);
+      li.appendChild(btn);
+      resultsUl.appendChild(li);
+    }
+  }
+
+  // Cerca film (nome film)
+  for (const movie in moviesData) {
+    if (movie.toLowerCase().includes(query)) {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.textContent = `Film: ${movie}`;
+      btn.onclick = () => showMovie(movie);
+      li.appendChild(btn);
+      resultsUl.appendChild(li);
+    }
+  }
+
+  // Se non ci sono risultati
+  if (resultsUl.children.length === 0) {
+    resultsUl.innerHTML = "<li>Nessun risultato trovato.</li>";
+  }
+
+  resultsView.style.display = "block";
 }
