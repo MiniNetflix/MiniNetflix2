@@ -27,7 +27,7 @@ const seriesData = {
 const moviesData = {
   "Il buco: Capitolo 2": {
     img: "https://i.imgur.com/dezd4Vb.jpeg",
-    src: "https://supervideo.cc/e/oz82xaij80cd"
+    src: "https://drive.google.com/file/d/1WVhXNNE26fbIbweJ-Zk5RzBIQSSolr2t/preview"
   },
   "Inception": {
     img: "https://via.placeholder.com/150x220?text=Inception",
