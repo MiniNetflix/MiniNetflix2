@@ -1,6 +1,6 @@
 const users = {
-  "utente1": "password1",
-  "utente2": "password2"
+  "Alessio": "1234",
+  "Marco": "pelopelo"
 };
 let currentUser = null;
 
