@@ -36,6 +36,10 @@ const moviesData = {
   "Harry Potter e i doni della morte: I parte": {
     img: "https://i.imgur.com/4q0eRaQ.jpeg",
     src: "https://drive.google.com/file/d/1Rfr4vh6xVEoG5f-WMeeQyoChIGInwQAt/preview"
+  },
+  "Harry Potter e la pietra filosofale": {
+    img: "https://i.imgur.com/JzHMob8.jpeg",
+    src: "https://drive.google.com/file/d/1Rfr4vh6xVEoG5f-WMeeQyoChIGInwQAt/preview"
   }
 };
 
