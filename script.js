@@ -1,222 +1,123 @@
-const USERS = {
-  "user1": "password1",
-  "user2": "password2",
-  "user3": "password3"
+// Utenti demo
+const users = {
+  "utente1": "password1",
+  "utente2": "password2",
+  "utente3": "password3"
 };
 let currentUser = null;
 
-// Link diretti Google Drive (sostituisci ID con i tuoi file)
-const films = [
-  {
-    title: "Film Google Drive 1",
-    src: "https://drive.google.com/uc?export=download&id=ID_FILE_1",
-    type: "video/mp4"
-  },
-  {
-    title: "Film Google Drive 2",
-    src: "https://drive.google.com/uc?export=download&id=ID_FILE_2",
-    type: "video/mp4"
+// Dati demo serie, stagioni, episodi e link
+const seriesData = {
+  "Ginny e Georgia": {
+    seasons: {
+      1: [
+        { episode: 1, title: "Episodio 1", src: "https://drive.google.com/file/d/12Ew2SflLxJP6C6UuznxfX4ou-1e_1Xcq/preview" },
+        { episode: 2, title: "Episodio 2", src: "https://drive.google.com/file/d/13wB1kyWtuHqINWpBYsfRSgbOIQ8404UE/preview" },
+        { episode: 3, title: "Episodio 3", src: "https://drive.google.com/file/d/1axCVYDN7sJjm90pXt1hk3uJOZCIAtvtc/preview" },
+        { episode: 10, title: "Episodio 10", src: "https://drive.google.com/file/d/1axCVYDN7sJjm90pXt1hk3uJOZCIAtvtc/preview" }
+      ],
+      2: [
+        // aggiungi episodi seconda stagione se vuoi
+      ]
+    }
   }
-];
-
-const serieTV = [
-  {
-    title: "Ginny e Georgia",
-    src: "https://drive.google.com/file/d/1axCVYDN7sJjm90pXt1hk3uJOZCIAtvtc/preview",
-    type: "video/mp4"
-  },
-  {
-    title: "Serie Google Drive 2",
-    src: "https://drive.google.com/uc?export=download&id=ID_FILE_4",
-    type: "video/mp4"
-  }
-];
+};
 
 // Login
 function login() {
-  const username = document.getElementById("username").value.trim();
-  const password = document.getElementById("password").value.trim();
-  const errorElem = document.getElementById("login-error");
+  const user = document.getElementById("username").value.trim();
+  const pass = document.getElementById("password").value.trim();
 
-  if (USERS[username] && USERS[username] === password) {
-    currentUser = username;
+  if(users[user] && users[user] === pass) {
+    currentUser = user;
     document.getElementById("login-screen").style.display = "none";
-    document.getElementById("app").style.display = "flex";
-    errorElem.textContent = "";
-    renderVideos();
-    loadHistory();
+    document.getElementById("main-app").style.display = "block";
+    showSeriesList();
   } else {
-    errorElem.textContent = "Username o password errati.";
+    document.getElementById("login-error").innerText = "Credenziali errate";
   }
 }
 
-// Logout
 function logout() {
   currentUser = null;
-  document.getElementById("app").style.display = "none";
-  document.getElementById("login-screen").style.display = "block";
-  clearContentHighlights();
-  document.getElementById("film-section").innerHTML = "";
-  document.getElementById("serie-section").innerHTML = "";
-  document.getElementById("history-list").innerHTML = "";
+  location.reload();
 }
 
-// Render video dinamici
-function renderVideos() {
-  const filmSection = document.getElementById("film-section");
-  const serieSection = document.getElementById("serie-section");
-
-  filmSection.innerHTML = "";
-  serieSection.innerHTML = "";
-
-  films.forEach((video, index) => {
-    filmSection.appendChild(createVideoItem(video, index, "film"));
-  });
-
-  serieTV.forEach((video, index) => {
-    serieSection.appendChild(createVideoItem(video, index, "serie"));
-  });
+// Mostra lista serie
+function showSeriesList() {
+  hideAllViews();
+  document.getElementById("series-list").style.display = "block";
 }
 
-// Crea elemento video con video.js player
-function createVideoItem(video, idx, tipo) {
-  const container = document.createElement("div");
-  container.className = "video-item";
-  container.dataset.title = video.title;
+// Mostra stagioni di una serie
+function showSeasons(seriesName) {
+  hideAllViews();
+  const seasonList = document.getElementById("season-list");
+  const seasonTitle = document.getElementById("season-title");
+  const seasonsUl = document.getElementById("seasons-ul");
 
-  const title = document.createElement("h3");
-  title.textContent = video.title;
-  container.appendChild(title);
+  seasonTitle.textContent = seriesName;
+  seasonsUl.innerHTML = "";
 
-  const videoTag = document.createElement("video");
-  videoTag.className = "video-js vjs-default-skin";
-  videoTag.controls = true;
-  videoTag.width = 720;
-  videoTag.height = 400;
-  videoTag.preload = "none";
-  videoTag.id = `${tipo}-video-${idx}`;
-
-  // Source
-  const source = document.createElement("source");
-  source.src = video.src;
-  source.type = video.type;
-  videoTag.appendChild(source);
-
-  container.appendChild(videoTag);
-
-  // Setup video.js player
-  setTimeout(() => {
-    if (videojs.getPlayer(videoTag.id)) {
-      videojs.getPlayer(videoTag.id).dispose();
+  const seasons = seriesData[seriesName]?.seasons;
+  if (!seasons) {
+    seasonsUl.innerHTML = "<li>Nessuna stagione disponibile</li>";
+  } else {
+    for (const seasonNum in seasons) {
+      const li = document.createElement("li");
+      const btn = document.createElement("button");
+      btn.textContent = "Stagione " + seasonNum;
+      btn.onclick = () => showEpisodes(seriesName, seasonNum);
+      li.appendChild(btn);
+      seasonsUl.appendChild(li);
     }
-    const player = videojs(videoTag.id);
-
-    player.on("play", () => {
-      addToHistory(video.title, video.src);
-    });
-  }, 50);
-
-  return container;
-}
-
-// Menu selezione
-document.querySelectorAll("#sidebar .menu-item").forEach(item => {
-  item.addEventListener("click", () => {
-    clearContentHighlights();
-    item.classList.add("active");
-    const section = item.dataset.section;
-    document.querySelectorAll(".section-content").forEach(sec => {
-      sec.style.display = "none";
-    });
-    if (section === "film") {
-      document.getElementById("film-section").style.display = "block";
-    } else if (section === "serie") {
-      document.getElementById("serie-section").style.display = "block";
-    } else if (section === "cronologia") {
-      document.getElementById("cronologia-section").style.display = "block";
-      loadHistory();
-    }
-  });
-});
-
-function clearContentHighlights() {
-  document.querySelectorAll("#sidebar .menu-item").forEach(item => {
-    item.classList.remove("active");
-  });
-}
-
-// Cronologia (in localStorage)
-function addToHistory(title, src) {
-  if (!currentUser) return;
-
-  let history = JSON.parse(localStorage.getItem(`history_${currentUser}`)) || [];
-
-  // Evita duplicati
-  if (!history.find(item => item.src === src)) {
-    history.push({ title, src, date: new Date().toISOString() });
-    localStorage.setItem(`history_${currentUser}`, JSON.stringify(history));
-  }
-}
-
-function loadHistory() {
-  if (!currentUser) return;
-
-  const historyList = document.getElementById("history-list");
-  historyList.innerHTML = "";
-
-  let history = JSON.parse(localStorage.getItem(`history_${currentUser}`)) || [];
-
-  if (history.length === 0) {
-    historyList.innerHTML = "<p>Nessun video guardato.</p>";
-    return;
   }
 
-  history.forEach((item, idx) => {
-    const div = document.createElement("div");
-    div.textContent = `${item.title}`;
-    div.title = `Guardato il: ${new Date(item.date).toLocaleString()}`;
-    div.style.userSelect = "none";
+  seasonList.style.display = "block";
+}
 
-    div.onclick = () => {
-      // Passa alla sezione video
-      clearContentHighlights();
-      const filmMenu = document.querySelector("#sidebar .menu-item[data-section='film']");
-      const serieMenu = document.querySelector("#sidebar .menu-item[data-section='serie']");
+// Mostra episodi di una stagione
+function showEpisodes(seriesName, seasonNum) {
+  hideAllViews();
+  const episodeList = document.getElementById("episode-list");
+  const episodeTitle = document.getElementById("episode-title");
+  const episodesContainer = document.getElementById("episodes-container");
 
-      // Verifica se è film o serie (controlla nella lista)
-      const foundFilm = films.find(f => f.src === item.src);
-      const foundSerie = serieTV.find(s => s.src === item.src);
+  episodeTitle.textContent = seriesName + " - Stagione " + seasonNum;
+  episodesContainer.innerHTML = "";
 
-      if (foundFilm) {
-        filmMenu.classList.add("active");
-        document.getElementById("film-section").style.display = "block";
-        document.getElementById("serie-section").style.display = "none";
-      } else if (foundSerie) {
-        serieMenu.classList.add("active");
-        document.getElementById("serie-section").style.display = "block";
-        document.getElementById("film-section").style.display = "none";
-      }
+  const episodes = seriesData[seriesName]?.seasons[seasonNum];
+  if (!episodes || episodes.length === 0) {
+    episodesContainer.innerHTML = "<p>Nessun episodio disponibile</p>";
+  } else {
+    episodes.forEach(ep => {
+      const div = document.createElement("div");
+      const h3 = document.createElement("h3");
+      h3.textContent = `Episodio ${ep.episode}: ${ep.title}`;
+      const iframe = document.createElement("iframe");
+      iframe.src = ep.src;
+      iframe.allowFullscreen = true;
+      iframe.frameBorder = "0";
 
-      document.getElementById("cronologia-section").style.display = "none";
+      div.appendChild(h3);
+      div.appendChild(iframe);
+      episodesContainer.appendChild(div);
+    });
+  }
 
-      // Avvia il video corrispondente
-      setTimeout(() => {
-        let playerId = "";
-        if (foundFilm) {
-          playerId = `film-video-${films.indexOf(foundFilm)}`;
-        } else if (foundSerie) {
-          playerId = `serie-video-${serieTV.indexOf(foundSerie)}`;
-        }
-        if (playerId) {
-          const player = videojs(playerId);
-          player.ready(() => {
-            player.currentTime(0);
-            player.play();
-          });
-        }
-      }, 200);
-    };
+  episodeList.style.display = "block";
+}
 
-    historyList.appendChild(div);
-  });
+// Nascondi tutte le view
+function hideAllViews() {
+  document.querySelectorAll(".view").forEach(v => v.style.display = "none");
+}
+
+// Torna indietro
+function backToSeries() {
+  showSeriesList();
+}
+function backToSeasons() {
+  document.getElementById("episode-list").style.display = "none";
+  document.getElementById("season-list").style.display = "block";
 }
