@@ -33,9 +33,9 @@ const moviesData = {
     img: "https://i.imgur.com/dezd4Vb.jpeg",
     src: "https://drive.google.com/file/d/1WVhXNNE26fbIbweJ-Zk5RzBIQSSolr2t/preview"
   },
-  "Inception": {
-    img: "https://via.placeholder.com/150x220?text=Inception",
-    src: "https://www.youtube.com/embed/8hP9D6kZseM"
+  "Harry Potter e i doni della morte: I parte": {
+    img: "https://i.imgur.com/4q0eRaQ.jpeg",
+    src: "https://drive.google.com/file/d/1Rfr4vh6xVEoG5f-WMeeQyoChIGInwQAt/preview"
   }
 };
 
