@@ -6,7 +6,7 @@ let currentUser = null;
 
 const seriesData = {
   "Ginny e Georgia": {
-    img: "https://m.media-amazon.com/images/M/MV5BN2M2YzVmZDAtZDk1YS00YTczLTk2YmEtMTk1ZTQyZjlkMmUwXkEyXkFqcGdeQXVyMTMzNzIyNDc1._V1_.jpg",
+    img: "https://i.imgur.com/CScKmEZ.jpeg",
     seasons: {
       1: [
         { episode: 1, title: "Episodio 1", src: "https://drive.google.com/file/d/12Ew2SflLxJP6C6UuznxfX4ou-1e_1Xcq/preview" }
