@@ -10,7 +10,6 @@ const seriesData = {
     seasons: {
       1: [
         { episode: 1, title: "Episodio 1", src: "https://drive.google.com/file/d/12Ew2SflLxJP6C6UuznxfX4ou-1e_1Xcq/preview" }
-        { episode: 2, title: "Episodio 2", src: "https://drive.google.com/file/d/13wB1kyWtuHqINWpBYsfRSgbOIQ8404UE/preview" }
       ]
     }
   },
