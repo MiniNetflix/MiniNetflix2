@@ -25,8 +25,8 @@ const seriesData = {
 };
 
 const moviesData = {
-  "Il Padrino": {
-    img: "https://via.placeholder.com/150x220?text=Il+Padrino",
+  "Il buco: Capitolo 2": {
+    img: "https://i.imgur.com/dezd4Vb.jpeg",
     src: "https://supervideo.cc/e/oz82xaij80cd"
   },
   "Inception": {
