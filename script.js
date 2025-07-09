@@ -1,3 +1,9 @@
+const users = {
+  "Alessio": "1234",
+  "Marco": "pelopelo"
+};
+let currentUser = null;
+
 // Sezione per il caricamento dei dati delle serie e dei film
 const seriesList = [
  "Ginny e Georgia": {
