@@ -48,7 +48,7 @@ const seriesData = {
     }
   },
   "The Vampire Diaries": {
-    img: "https://i.imgur.com/LdSegP8.jpeg",
+    img: "https://i.imgur.com/oyXekYo.jpeg",
     seasons: {
       1: [
         { episode: 1, title: "Pilot", src: "https://drive.google.com/file/d/12Ew2SflLxJP6C6UuznxfX4ou-1e_1Xcq/preview" },
