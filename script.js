@@ -1,11 +1,6 @@
-const users = {
-  "Alessio": "1234",
-  "Marco": "pelopelo"
-};
-let currentUser = null;
-
-const seriesData = {
-  "Ginny e Georgia": {
+// Sezione per il caricamento dei dati delle serie e dei film
+const seriesList = [
+ "Ginny e Georgia": {
     img: "https://i.imgur.com/CScKmEZ.jpeg",
     seasons: {
       1: [
@@ -54,10 +49,10 @@ const seriesData = {
       ]
     }
   }
-};
+];
 
-const moviesData = {
-  "Il buco: Capitolo 2": {
+const moviesList = [
+"Il buco: Capitolo 2": {
     img: "https://i.imgur.com/dezd4Vb.jpeg",
     src: "https://drive.google.com/file/d/1WVhXNNE26fbIbweJ-Zk5RzBIQSSolr2t/preview"
   },
@@ -93,182 +88,150 @@ const moviesData = {
     img: "https://i.imgur.com/JzHMob8.jpeg",
     src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
   }
-};
+];
 
-function login() {
-  const user = document.getElementById("username").value.trim();
-  const pass = document.getElementById("password").value.trim();
-  if (users[user] && users[user] === pass) {
-    currentUser = user;
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("main-app").style.display = "block";
-    loadHome();
-  } else {
-    document.getElementById("login-error").innerText = "Credenziali errate";
-  }
-}
+const maxItems = 24;
 
-function logout() {
-  currentUser = null;
-  location.reload();
-}
-
-function loadHome() {
-  hideAllViews();
+function showHome() {
   document.getElementById("home-view").style.display = "block";
-
-  const seriesDiv = document.getElementById("series-list-div");
-  seriesDiv.innerHTML = "";
-  let seriesCount = 0;
-  for (const serie in seriesData) {
-    if (seriesCount >= 24) break;
-    const card = createCard(serie, seriesData[serie].img, () => showSeasons(serie));
-    seriesDiv.appendChild(card);
-    seriesCount++;
-  }
-
-  const moviesDiv = document.getElementById("movies-list-div");
-  moviesDiv.innerHTML = "";
-  let moviesCount = 0;
-  for (const movie in moviesData) {
-    if (moviesCount >= 24) break;
-    const card = createCard(movie, moviesData[movie].img, () => showMovie(movie));
-    moviesDiv.appendChild(card);
-    moviesCount++;
-  }
+  document.getElementById("series-view").style.display = "none";
+  document.getElementById("video-view").style.display = "none";
+  document.getElementById("login-view").style.display = "none";
+  loadHomeContent();
 }
 
-function createCard(title, imgUrl, onClick) {
-  const div = document.createElement("div");
-  div.className = "card";
-  div.onclick = onClick;
+function loadHomeContent() {
+  const seriesContainer = document.getElementById("series-list-div");
+  const moviesContainer = document.getElementById("movies-list-div");
+
+  seriesContainer.innerHTML = "";
+  moviesContainer.innerHTML = "";
+
+  const limitedSeries = seriesList.slice(0, maxItems);
+  const limitedMovies = moviesList.slice(0, maxItems);
+
+  limitedSeries.forEach((serie) => {
+    const card = createCard(serie);
+    seriesContainer.appendChild(card);
+  });
+
+  limitedMovies.forEach((movie) => {
+    const card = createCard(movie);
+    moviesContainer.appendChild(card);
+  });
+}
+
+function createCard(item) {
+  const card = document.createElement("div");
+  card.className = "card";
 
   const img = document.createElement("img");
-  img.src = imgUrl;
-  const titleDiv = document.createElement("div");
-  titleDiv.className = "card-title";
-  titleDiv.textContent = title;
+  img.src = item.image;
+  img.alt = item.title;
+  card.appendChild(img);
 
-  div.appendChild(img);
-  div.appendChild(titleDiv);
-  return div;
+  const title = document.createElement("p");
+  title.textContent = item.title;
+  card.appendChild(title);
+
+  card.onclick = () => {
+    if (item.seasons) {
+      showSeasons(item);
+    } else {
+      playVideo(item);
+    }
+  };
+
+  return card;
+}
+
+function showSeasons(series) {
+  document.getElementById("home-view").style.display = "none";
+  document.getElementById("series-view").style.display = "block";
+  document.getElementById("video-view").style.display = "none";
+
+  const title = document.getElementById("episode-title");
+  title.textContent = series.title;
+
+  const listContainer = document.getElementById("episode-list");
+  listContainer.innerHTML = "";
+
+  series.seasons.forEach((season, seasonIndex) => {
+    const seasonDiv = document.createElement("div");
+    seasonDiv.className = "season";
+    const seasonTitle = document.createElement("h3");
+    seasonTitle.textContent = `Stagione ${seasonIndex + 1}`;
+    seasonDiv.appendChild(seasonTitle);
+
+    season.episodes.forEach((episode) => {
+      const epDiv = document.createElement("div");
+      epDiv.className = "episode";
+      epDiv.textContent = episode.title;
+      epDiv.onclick = () => playVideo(episode);
+      seasonDiv.appendChild(epDiv);
+    });
+
+    listContainer.appendChild(seasonDiv);
+  });
+}
+
+function playVideo(video) {
+  document.getElementById("home-view").style.display = "none";
+  document.getElementById("series-view").style.display = "none";
+  document.getElementById("video-view").style.display = "block";
+
+  const videoPlayer = document.getElementById("video-player");
+  videoPlayer.src = video.url;
+  videoPlayer.play();
+
+  document.getElementById("video-title").textContent = video.title;
 }
 
 function showAll(type) {
-  hideAllViews();
-  document.getElementById("home-view").style.display = "block";
-
-  const container = type === "series" ? document.getElementById("series-list-div") : document.getElementById("movies-list-div");
-  const data = type === "series" ? seriesData : moviesData;
-
+  const container = document.getElementById("episode-list");
   container.innerHTML = "";
-  for (const key in data) {
-    const card = createCard(key, data[key].img, () => {
-      type === "series" ? showSeasons(key) : showMovie(key);
-    });
+
+  const items = type === "series" ? seriesList : moviesList;
+  document.getElementById("home-view").style.display = "none";
+  document.getElementById("series-view").style.display = "block";
+  document.getElementById("video-view").style.display = "none";
+
+  document.getElementById("episode-title").textContent =
+    type === "series" ? "Tutte le Serie TV" : "Tutti i Film";
+
+  const backButton = document.createElement("button");
+  backButton.textContent = "Torna alla Home";
+  backButton.onclick = backToHome;
+  container.parentElement.insertBefore(backButton, container);
+
+  items.forEach((item) => {
+    const card = createCard(item);
     container.appendChild(card);
-  }
-}
-
-function showSeasons(seriesName) {
-  hideAllViews();
-  document.getElementById("season-title").textContent = seriesName;
-  const seasonsUl = document.getElementById("seasons-ul");
-  seasonsUl.innerHTML = "";
-
-  const seasons = seriesData[seriesName].seasons;
-  for (const seasonNum in seasons) {
-    const li = document.createElement("li");
-    const btn = document.createElement("button");
-    btn.textContent = `Stagione ${seasonNum}`;
-    btn.onclick = () => showEpisodes(seriesName, seasonNum);
-    li.appendChild(btn);
-    seasonsUl.appendChild(li);
-  }
-
-  document.getElementById("season-list").style.display = "block";
-}
-
-function showEpisodes(seriesName, seasonNum) {
-  hideAllViews();
-  document.getElementById("episode-title").textContent = `${seriesName} - Stagione ${seasonNum}`;
-  const container = document.getElementById("episodes-container");
-  container.innerHTML = "";
-
-  const episodes = seriesData[seriesName].seasons[seasonNum];
-  for (const ep of episodes) {
-    const div = document.createElement("div");
-    const h3 = document.createElement("h3");
-    h3.textContent = `Episodio ${ep.episode}: ${ep.title}`;
-    const iframe = document.createElement("iframe");
-    iframe.src = ep.src;
-    iframe.allowFullscreen = true;
-    iframe.frameBorder = "0";
-    div.appendChild(h3);
-    div.appendChild(iframe);
-    container.appendChild(div);
-  }
-
-  document.getElementById("episode-list").style.display = "block";
-}
-
-function showMovie(movieName) {
-  hideAllViews();
-  document.getElementById("episode-title").textContent = movieName;
-  const container = document.getElementById("episodes-container");
-  container.innerHTML = "";
-
-  const movie = moviesData[movieName];
-  const iframe = document.createElement("iframe");
-  iframe.src = movie.src;
-  iframe.allowFullscreen = true;
-  iframe.frameBorder = "0";
-  container.appendChild(iframe);
-
-  document.getElementById("episode-list").style.display = "block";
-}
-
-function hideAllViews() {
-  document.querySelectorAll(".view").forEach(v => v.style.display = "none");
+  });
 }
 
 function backToHome() {
-  loadHome();
+  showHome();
 }
 
-function filterContent() {
-  const query = document.getElementById("search-bar").value.trim().toLowerCase();
-  if (!query) return loadHome();
-
-  hideAllViews();
-  const ul = document.getElementById("search-results-ul");
-  ul.innerHTML = "";
-
-  for (const serie in seriesData) {
-    if (serie.toLowerCase().includes(query)) {
-      const li = document.createElement("li");
-      const btn = document.createElement("button");
-      btn.textContent = `Serie TV: ${serie}`;
-      btn.onclick = () => showSeasons(serie);
-      li.appendChild(btn);
-      ul.appendChild(li);
-    }
-  }
-
-  for (const movie in moviesData) {
-    if (movie.toLowerCase().includes(query)) {
-      const li = document.createElement("li");
-      const btn = document.createElement("button");
-      btn.textContent = `Film: ${movie}`;
-      btn.onclick = () => showMovie(movie);
-      li.appendChild(btn);
-      ul.appendChild(li);
-    }
-  }
-
-  if (ul.children.length === 0) {
-    ul.innerHTML = "<li>Nessun risultato trovato.</li>";
-  }
-
-  document.getElementById("search-results").style.display = "block";
+function login() {
+  document.getElementById("home-view").style.display = "none";
+  document.getElementById("series-view").style.display = "none";
+  document.getElementById("video-view").style.display = "none";
+  document.getElementById("login-view").style.display = "block";
 }
+
+function submitLogin() {
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  if (username === "admin" && password === "password") {
+    showHome();
+  } else {
+    alert("Credenziali non valide");
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  login();
+});
