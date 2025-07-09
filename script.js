@@ -63,23 +63,23 @@ const moviesData = {
   },
   "Harry Potter e i doni della morte: I parte": {
     img: "https://i.imgur.com/4q0eRaQ.jpeg",
-    src: "https://drive.google.com/file/d/1Rfr4vh6xVEoG5f-WMeeQyoChIGInwQAt/preview"
+    src: "https://drive.google.com/file/d/1PnyQvFvB1hd92DJYQQRSgElZc1BT77Li/preview"
   },
   "Harry Potter e la pietra filosofale": {
     img: "https://i.imgur.com/JzHMob8.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1PfbqvyS4U1yZHlQOIxjOmXfIpXqCg9OT/preview"
   },
   "Harry Potter e i doni della morte: II parte": {
     img: "https://i.imgur.com/YXzLUcr.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1PhofR-pNNOsI4pfu1bD2ItCqyRvR72Wm/preview"
   },
 "Harry Potter e la camera dei segreti": {
     img: "https://i.imgur.com/DuO9Dy4.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1PeJ491bO1cDFfITDybQTNp7bE6lnb_E-/preview"
   },
 "Harry Potter e il prigioniero di Azkaban": {
     img: "https://i.imgur.com/vKcT7Gr.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1PahBD4wsw1OPt0M1NXoH7LdOqngM2cyw/preview"
   },
 "Harry Potter e il calice di fuoco": {
     img: "https://i.imgur.com/uhptsHY.jpeg",
