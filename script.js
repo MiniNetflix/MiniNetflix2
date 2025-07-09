@@ -69,6 +69,30 @@ const moviesData = {
     img: "https://i.imgur.com/JzHMob8.jpeg",
     src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
   }
+  "Harry Potter e i doni della morte: II parte": {
+    img: "https://i.imgur.com/JzHMob8.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  }
+"Harry Potter e la camera dei segreti": {
+    img: "https://i.imgur.com/DuO9Dy4.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  }
+"Harry Potter e il prigioniero di Azkaban": {
+    img: "https://i.imgur.com/JzHMob8.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  }
+"Harry Potter e il calice di fuoco": {
+    img: "https://i.imgur.com/JzHMob8.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  }
+"Harry Potter e l'Ordine della Fenice": {
+    img: "https://i.imgur.com/JzHMob8.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  }
+"Harry Potter e il principe mezzosangue": {
+    img: "https://i.imgur.com/JzHMob8.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  }
 };
 
 function login() {
