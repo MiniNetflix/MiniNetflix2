@@ -70,7 +70,7 @@ const moviesData = {
     src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
   },
   "Harry Potter e i doni della morte: II parte": {
-    img: "https://i.imgur.com/JzHMob8.jpeg",
+    img: "https://i.imgur.com/YXzLUcr.jpeg",
     src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
   },
 "Harry Potter e la camera dei segreti": {
