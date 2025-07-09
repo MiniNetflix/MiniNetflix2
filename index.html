@@ -2,63 +2,55 @@
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MiniNetflix</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Streaming App</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
   <div id="login-screen">
-    <h2>Accedi</h2>
-    <input type="text" id="username" placeholder="Nome utente" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <p id="login-error"></p>
+    <h2>Login</h2>
+    <input id="username" placeholder="Username" />
+    <input id="password" type="password" placeholder="Password" />
+    <button onclick="login()">Accedi</button>
+    <p id="login-error" class="error"></p>
   </div>
 
-  <div id="main-app" style="display:none;">
+  <div id="main-app" style="display: none;">
     <header>
-      MiniNetflix
-      <div id="search-container">
-        <input
-          type="text"
-          id="search-bar"
-          placeholder="Cerca film o serie TV..."
-          onkeypress="if(event.key==='Enter') filterContent()"
-        />
-        <button onclick="filterContent()">Cerca</button>
-        <button onclick="logout()" class="logout-btn">Esci</button>
-      </div>
+      <input id="search-bar" placeholder="Cerca..." oninput="filterContent()" />
+      <button onclick="backToHome()">Home</button>
+      <button onclick="logout()">Logout</button>
     </header>
 
     <div id="home-view" class="view">
-      <section id="series-section">
-        <h2>Serie TV</h2>
-        <div class="scroll-container" id="series-list-div"></div>
-        <button class="see-all-btn" onclick="showAll('series')">Vedi tutte le Serie TV</button>
+      <section>
+        <div class="section-header">
+          <h2>Serie TV</h2>
+          <button onclick="showAll('series')">Vedi tutte</button>
+        </div>
+        <div id="series-list-div" class="card-container"></div>
       </section>
 
-      <section id="movies-section">
-        <h2>Film</h2>
-        <div class="scroll-container" id="movies-list-div"></div>
-        <button class="see-all-btn" onclick="showAll('movies')">Vedi tutti i Film</button>
+      <section>
+        <div class="section-header">
+          <h2>Film</h2>
+          <button onclick="showAll('movies')">Vedi tutti</button>
+        </div>
+        <div id="movies-list-div" class="card-container"></div>
       </section>
     </div>
 
-    <div id="season-list" class="view" style="display:none;">
-      <button class="nav-button" onclick="backToHome()">← Torna alla home</button>
+    <div id="season-list" class="view">
       <h2 id="season-title"></h2>
       <ul id="seasons-ul"></ul>
     </div>
 
-    <div id="episode-list" class="view" style="display:none;">
-      <button class="nav-button" onclick="backToHome()">← Torna alla home</button>
+    <div id="episode-list" class="view">
       <h2 id="episode-title"></h2>
       <div id="episodes-container"></div>
     </div>
 
-    <div id="search-results" class="view" style="display:none;">
-      <button class="nav-button" onclick="backToHome()">← Torna alla home</button>
+    <div id="search-results" class="view">
       <h2>Risultati della ricerca</h2>
       <ul id="search-results-ul"></ul>
     </div>
