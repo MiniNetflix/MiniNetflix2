@@ -57,7 +57,7 @@ const seriesData = {
 };
 
 const moviesData = {
-  "Il buco: Capitolo 2": {
+   "Il buco: Capitolo 2": {
     img: "https://i.imgur.com/dezd4Vb.jpeg",
     src: "https://drive.google.com/file/d/1WVhXNNE26fbIbweJ-Zk5RzBIQSSolr2t/preview"
   },
@@ -122,7 +122,7 @@ function loadHome() {
   let seriesCount = 0;
   for (const serie in seriesData) {
     if (seriesCount >= 24) break;
-    const card = createCard(serie, seriesData[serie].img, () => showSeasons(serie));
+    const card = createCard(serie, seriesData[serie].img, () => showSeasons(serie), seriesCount);
     seriesDiv.appendChild(card);
     seriesCount++;
   }
@@ -132,16 +132,24 @@ function loadHome() {
   let moviesCount = 0;
   for (const movie in moviesData) {
     if (moviesCount >= 24) break;
-    const card = createCard(movie, moviesData[movie].img, () => showMovie(movie));
+    const card = createCard(movie, moviesData[movie].img, () => showMovie(movie), moviesCount);
     moviesDiv.appendChild(card);
     moviesCount++;
   }
 }
 
-function createCard(title, imgUrl, onClick) {
+function createCard(title, imgUrl, onClick, index = 0) {
   const div = document.createElement("div");
   div.className = "card";
   div.onclick = onClick;
+
+  // Animazione fade + slide con delay progressivo
+  div.style.opacity = "0";
+  div.style.animationName = "fadeSlideUp";
+  div.style.animationFillMode = "forwards";
+  div.style.animationDuration = "0.5s";
+  div.style.animationTimingFunction = "ease-out";
+  div.style.animationDelay = `${index * 0.1}s`;
 
   const img = document.createElement("img");
   img.src = imgUrl;
@@ -162,13 +170,17 @@ function showAll(type) {
   const data = type === "series" ? seriesData : moviesData;
 
   container.innerHTML = "";
+  let index = 0;
   for (const key in data) {
     const card = createCard(key, data[key].img, () => {
       type === "series" ? showSeasons(key) : showMovie(key);
-    });
+    }, index);
     container.appendChild(card);
+    index++;
   }
 }
+
+// (resto delle funzioni come le avevi)
 
 function showSeasons(seriesName) {
   hideAllViews();
