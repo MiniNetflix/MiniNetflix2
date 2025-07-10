@@ -290,6 +290,10 @@ const moviesData = {
 "Harry Potter e il principe mezzosangue": {
     img: "https://i.imgur.com/nxUCLC7.jpeg",
     src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+  },
+  "Tartarughe all'infinito": {
+    img: "https://i.imgur.com/BHYjMmS.jpeg",
+    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
   }
 };
 
