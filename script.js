@@ -244,11 +244,18 @@ const seriesData = {
       ]
     }
   },
-  "Breaking Bad": {
-    img: "https://via.placeholder.com/150x220?text=Breaking+Bad",
+  "Mercoledì": {
+    img: "https://i.imgur.com/rZ8CYjh.jpeg",
     seasons: {
       1: [
-        { episode: 1, title: "Pilot", src: "https://www.youtube.com/embed/HhesaQXLuRY" }
+        { episode: 1, title: "Chi nasce di Mercoledì è immensamente triste", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 2, title: "Un triste isolamento", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 3, title: "Tristemente amici o nemici", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 4, title: "Una triste serata", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 5, title: "Chi semina vento raccoglie tristezza", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 6, title: "Un triste compleanno", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 7, title: "E' triste che tu non mi conosca ancora", src: "https://www.youtube.com/embed/HhesaQXLuRY" },
+        { episode: 8, title: "Triste da morire", src: "https://www.youtube.com/embed/HhesaQXLuRY" }
       ]
     }
   }
@@ -281,15 +288,15 @@ const moviesData = {
   },
 "Harry Potter e il calice di fuoco": {
     img: "https://i.imgur.com/uhptsHY.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1VBaiSZAf8r_r67gXGJnaW-yjFDJBgdQ-/preview"
   },
 "Harry Potter e l'Ordine della Fenice": {
     img: "https://i.imgur.com/4sNJs7t.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1kg0hZcXMIpd9sgmme_CsE4AUbuivNxiF/preview"
   },
 "Harry Potter e il principe mezzosangue": {
     img: "https://i.imgur.com/nxUCLC7.jpeg",
-    src: "https://drive.google.com/file/d/1lZamFnz4DXuillwY-t8QcBs_LqmL5d-O/preview"
+    src: "https://drive.google.com/file/d/1OOteYUd-rrA8fnTEGT9jWLwc_WbmCETo/preview"
   },
   "Tartarughe all'infinito": {
     img: "https://i.imgur.com/zX8bM8z.jpeg",
